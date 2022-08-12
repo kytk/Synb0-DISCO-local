@@ -80,12 +80,15 @@ if __name__ == '__main__':
     # Run code ---------------------------------------------#
 
     # Get device
-    #device = torch.device("cuda")
-    device = torch.device("cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    else
+        device = torch.device("cpu")
 
     # Get model
     model = UNet3D(2, 1).to(device)
-    model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+    #model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(model_path, map_location=device))
 
     # Inference
     img_model = inference(T1_input_path, b0_input_path, model, device)
