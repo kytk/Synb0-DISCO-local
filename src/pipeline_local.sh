@@ -18,6 +18,8 @@
 
 # K. Nemoto 11 Aug 2022
 
+set -x
+
 TOPUP=1
 
 for arg in "$@"
@@ -39,7 +41,7 @@ export PATH=$PATH:$Synb0_SRC:$Synb0_PROC:$Synb0_ATLAS
 
 
 # Prepare input
-prepare_input.sh ./INPUTS/b0.nii.gz ./INPUTS/T1.nii.gz ./INPUTS/T1_mask.nii.gz $Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c.nii.gz $Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c_2_5.nii.gz ./OUTPUTS
+prepare_input_local.sh ./INPUTS/b0.nii.gz ./INPUTS/T1.nii.gz ./INPUTS/T1_mask.nii.gz $Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c.nii.gz $Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c_2_5.nii.gz ./OUTPUTS
 
 
 # Run inference
