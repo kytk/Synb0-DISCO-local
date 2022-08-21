@@ -82,7 +82,7 @@ if __name__ == '__main__':
     # Get device
     if torch.cuda.is_available():
         device = torch.device("cuda")
-    else
+    else:
         device = torch.device("cpu")
 
     # Get model
