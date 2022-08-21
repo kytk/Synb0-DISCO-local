@@ -14,6 +14,10 @@
 
 ## Overview
 
+This repository is a fork of Synb0-DISCO. The main purpose of this repository is to run Synb0 on local workstation.
+
+Below is the original overview.
+
 This repository implements the paper "Synthesized b0 for diffusion distortion correction" and "Distortion correction of diffusion weighted MRI without reverse phase-encoding scans or field-maps". 
 
 This tool aims to enable susceptibility distortion correction with historical and/or limited datasets that do not include specific sequences for distortion correction (i.e. reverse phase-encoded scans). In short, we synthesize an "undistorted" b=0 image that matches the geometry of structural T1w images and also matches the contrast from diffusion images. We can then use this 'undistorted' image in standard pipelines (i.e. TOPUP) and tell the algorithm that this synthetic image has an infinite bandwidth. Note that the processing below enables both image synthesis, and also synthesis + full pipeline correction, if desired. 
@@ -23,6 +27,7 @@ Please use the following citations to refer to this work:
 Schilling KG, Blaber J, Hansen C, Cai L, Rogers B, Anderson AW, Smith S, Kanakaraj P, Rex T, Resnick SM, Shafer AT, Cutting LE, Woodward N, Zald D, Landman BA. Distortion correction of diffusion weighted MRI without reverse phase-encoding scans or field-maps. PLoS One. 2020 Jul 31;15(7):e0236418. doi: 10.1371/journal.pone.0236418. PMID: 32735601; PMCID: PMC7394453.
 
 Schilling KG, Blaber J, Huo Y, Newton A, Hansen C, Nath V, Shafer AT, Williams O, Resnick SM, Rogers B, Anderson AW, Landman BA. Synthesized b0 for diffusion distortion correction (Synb0-DisCo). Magn Reson Imaging. 2019 Dec;64:62-70. doi: 10.1016/j.mri.2019.05.008. Epub 2019 May 7. PMID: 31075422; PMCID: PMC6834894.
+
 
 ## Dockerized Application
 
@@ -70,7 +75,9 @@ singularity run -e \
 ## Non-containerized Instructions
 
 If you choose to run this in bash, the primary script is located in src/pipeline.sh. The paths in pipeline.sh are specific to the docker/singularity file
-systems, but the processing can be replicated using the scripts in src. These utilize freesurfer, FSL, ANTS, and a python environment with pytorch.
+systems, but the processing can be replicated using the scripts in src. These utilize freesurfer, c3d, FSL, ANTS, and a python environment with pytorch.
+
+Required python environments are: PyTorch, NumPy, SciPy, and NiBabel.
 
 ## Flags:
 
