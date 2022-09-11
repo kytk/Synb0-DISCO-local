@@ -16,9 +16,10 @@
 # run pipeline_local.sh
 # /path_to_Synb0-DISCO/src/pipeline_local.sh
 
-# K. Nemoto 11 Aug 2022
+# K. Nemoto 23 Aug 2022
 
-set -x
+# For debug
+# set -x
 
 TOPUP=1
 
