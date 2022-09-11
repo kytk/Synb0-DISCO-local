@@ -19,6 +19,33 @@ sid=$1
 t1w=$2
 dwi=$3
 
+#Confirm the parameters above before proceeding
+while true
+do
+  echo "Parameters are the following;"
+  echo "Subject ID: ${sid}"
+  echo "T1 image: ${t1w}"
+  echo "Diffusion image: ${dwi}"
+  echo "Are they correct (yes/no)?"
+
+  read answer
+
+  case $answer in
+    [Yy]*)
+      break
+      ;;
+    [Nn]*)
+      echo -e "Abort. \n"
+      exit
+      ;;
+    *)
+      echo -e "Type yes or no.\n"
+      ;;
+  esac
+done
+
+
+
 # generate sid
 if [ ! -d $sid ]; then
   mkdir -p $sid/{INPUTS,OUTPUTS}
@@ -48,6 +75,10 @@ else
   echo "0 -1 0 $readout" > $sid/INPUTS/acqparams.txt
   echo "0 1 0 0" >> $sid/INPUTS/acqparams.txt
 fi
- 
+
+echo "Done. Below is the tree"
+
+tree $sid 
+
 exit
 
