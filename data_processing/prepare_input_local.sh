@@ -44,8 +44,11 @@ T1_MASK_PATH=$JOB_PATH/T1_mask.nii.gz
 if [[ "$T1_ATLAS_PATH" == *"mask"* ]]; then 
   echo Copying user provided T1 Mask
   cp $T1_PATH $T1_MASK_PATH
+elif [ $SYNTH_FLAG -eq 1 ]; then
+  echo Skull stripping T1 with synthstrip
+  mri_synthstrip -i $T1_PATH -o $T1_MASK_PATH
 else
-  echo Skull stripping T1
+  echo Skull stripping T1 with BET
   BET_CMD="bet $T1_PATH $T1_MASK_PATH -R"
   echo $BET_CMD
   eval $BET_CMD
