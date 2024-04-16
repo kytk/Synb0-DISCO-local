@@ -2,15 +2,19 @@
 
 ## Contents
 
-* [Overview](#overview)
-* [Dockerized Application](#dockerized-application)
-* [Docker Instructions](#docker-instructions)
-* [Singularity Instructions](#singularity-instructions)
-* [Non-containerized Instructions](#non-containerized-instructions)
-* [Flags](#flags)
-* [Inputs](#inputs)
-* [Outputs](#outputs)
-* [After Running](#after-running)
+- [Synb0-DISCO](#synb0-disco)
+  - [Contents](#contents)
+  - [Overview](#overview)
+  - [Dockerized Application](#dockerized-application)
+  - [Docker Instructions:](#docker-instructions)
+  - [Singularity Instructions](#singularity-instructions)
+  - [Non-containerized Instructions](#non-containerized-instructions)
+  - [Flags:](#flags)
+  - [local version only](#local-version-only)
+  - [Inputs](#inputs)
+  - [Outputs](#outputs)
+  - [After Running](#after-running)
+
 
 ## Overview
 
@@ -88,6 +92,16 @@ Skip the application of FSL's topup susceptibility correction. As a default, we 
 **--stripped**
 
 Lets the container know the supplied T1 has already been skull stripped. As a default, we assume it is not skull stripped. *Please note this feature requires a well-stripped T1 as stripping artifacts can affect performance.*
+
+## local version only
+
+**--synthstrip**
+
+The option --synthstrip was added to allow freesurfer's synthstrip to be used for skullstripping inside the pipeline.
+
+**--threads=n**
+
+The option --threads=n was added to allow TOPUP to run in multi-threads. You can specify the number of cores you want to use (which will be passed to the "--nthr" option of topup). (However, the PC specs and FSL version must be compatible.)
 
 ## Inputs
 
