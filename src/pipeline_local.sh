@@ -17,7 +17,8 @@
 # /path_to_Synb0-DISCO/src/pipeline_local.sh
 
 # K. Nemoto 23 Aug 2022
-
+# Modified by Kiku 15 Apr 2024
+ 
 # For debug
 # set -x
 
@@ -29,8 +30,13 @@ export Synb0_PROC=${synb0path}/data_processing
 export Synb0_ATLAS=${synb0path}/atlases
 export PATH=$PATH:$Synb0_SRC:$Synb0_PROC:$Synb0_ATLAS
 
+# Set default values
 TOPUP=1
+TOPUP_THREADS=""
+SYNTH_FLAG=0
 MNI_T1_1_MM_FILE=$Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c.nii.gz
+
+
 for arg in "$@"
 do
     case $arg in
@@ -40,17 +46,14 @@ do
     	-s|--stripped)
 	    MNI_T1_1_MM_FILE=$Synb0_ATLAS/mni_icbm152_t1_tal_nlin_asym_09c_mask.nii.gz
         ;;
+        --synthstrip)
+          export SYNTH_FLAG=1
+        ;;
+        --threads=*)
+          TOPUP_THREADS="--nthr=${arg#*=}"
+        ;;
     esac
 done
-
-
-## Set path for executable
-pipelinepath=$(cd $(dirname $0) && pwd)
-synb0path=${pipelinepath%/src}
-export Synb0_SRC=${synb0path}/src
-export Synb0_PROC=${synb0path}/data_processing
-export Synb0_ATLAS=${synb0path}/atlases
-export PATH=$PATH:$Synb0_SRC:$Synb0_PROC:$Synb0_ATLAS
 
 
 # Prepare input
@@ -85,7 +88,7 @@ if [[ $TOPUP -eq 1 ]]; then
     echo Running topup
     fslmerge -t ./OUTPUTS/b0_all.nii.gz ./OUTPUTS/b0_d_smooth.nii.gz ./OUTPUTS/b0_u.nii.gz
     topup -v --imain=./OUTPUTS/b0_all.nii.gz --datain=./INPUTS/acqparams.txt \
-    --config=$Synb0_SRC/synb0.cnf --iout=./OUTPUTS/b0_all_topup.nii.gz --out=./OUTPUTS/topup
+    --config=$Synb0_SRC/synb0.cnf --iout=./OUTPUTS/b0_all_topup.nii.gz --out=./OUTPUTS/topup $TOPUP_THREADS
 fi
 
 
