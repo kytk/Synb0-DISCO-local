@@ -10,7 +10,7 @@
   - [Singularity Instructions](#singularity-instructions)
   - [Non-containerized Instructions](#non-containerized-instructions)
   - [Flags:](#flags)
-  - [local-version-only](#local-version-only)
+  - [local version only](#local-version-only)
   - [Inputs](#inputs)
   - [Outputs](#outputs)
   - [After Running](#after-running)
@@ -93,7 +93,7 @@ Skip the application of FSL's topup susceptibility correction. As a default, we 
 
 Lets the container know the supplied T1 has already been skull stripped. As a default, we assume it is not skull stripped. *Please note this feature requires a well-stripped T1 as stripping artifacts can affect performance.*
 
-## local-version-only
+## local version only
 
 **--synthstrip**
 
